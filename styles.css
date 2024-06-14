@@ -10,7 +10,7 @@ body {
     align-items: center;
     overflow: hidden;
     background: #d7d7d7;
-    height: 100dvh;
+    height: 100vh;
     background-color: #00000043;
     background-image: url(./assets/images/bg.jpg);
     background-size: cover;
@@ -23,7 +23,7 @@ body {
     background-image: url(./assets/images/tetrix.jpg);
     background-size: cover;
     background-position: -25px;
-    width: 360px;
+    width: 22rem; 
     border: 4px solid rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
@@ -115,3 +115,5 @@ body {
     height: 420px;
     padding: 10px;
   }
+
+  /* Responsive adjustments */
