@@ -4,6 +4,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+* {
+
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -17,8 +21,14 @@ body {
     background-position: center;
     backdrop-filter: blur(10px);
     background-blend-mode: multiply;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   #tetris {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
     background-color: rgb(255, 255, 255);
     background-image: url(./assets/images/tetrix.jpg);
     background-size: cover;
@@ -117,3 +127,17 @@ body {
   }
 
   /* Responsive adjustments */
+
+@media (max-width: 480px) {
+  #tetris {
+    transform: scale(.8);
+    width: 100%;
+  }
+  #info {
+    width: 90px;
+  }
+  #next_shape {  
+    width: 90px;
+    height: 90px;
+  }
+}
