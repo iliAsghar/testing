@@ -109,6 +109,9 @@ body {
   }
   #next_shape {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #000;
     
     border: 1px solid white;
@@ -139,5 +142,9 @@ body {
   #next_shape {  
     width: 90px;
     height: 90px;
+  }
+  #next_shape * {
+    position: absolute;
+    left: 0;
   }
 }
