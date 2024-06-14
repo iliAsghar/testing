@@ -281,12 +281,12 @@
         var initialX = null;
         var initialY = null;
 
-        this.canvas.addEventListener('touchstart', function (e) {
+        document.addEventListener('touchstart', function (e) {
             initialX = e.touches[0].clientX;
             initialY = e.touches[0].clientY;
         });
 
-        this.canvas.addEventListener('touchmove', function (e) {
+        document.addEventListener('touchmove', function (e) {
             if (initialX === null || initialY === null) {
                 return;
             }
@@ -321,7 +321,7 @@
             initialY = null;
         });
 
-        this.canvas.addEventListener('touchend', function (e) {
+        document.addEventListener('touchend', function (e) {
             initialX = null;
             initialY = null;
         });
