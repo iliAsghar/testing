@@ -95,7 +95,7 @@
         this.bindKeyEvents();
         this.bindTouchEvents();
         this.play();
-        
+        this.endBtnConfig();
       },
       initBoard: function () {
         this.boardHeight = this.canvasHeight / this.pSize;
@@ -469,6 +469,13 @@
         this.pTimer = setTimeout(gameLoop, me.speed);
         this.isActive = 1;
       },
+      endBtnConfig: function() {
+        const me = this
+        const surveyBtn = document.querySelector('#end')
+        surveyBtn.addEventListener('click', function() {
+          me.gameOver();
+        })
+      },
       togglePause: function () {
         if (this.isActive === 1) {
           this.clearTimers();
@@ -707,6 +714,7 @@
       bTest: function (rgx) {
         return rgx.test(navigator.userAgent);
       },
+      
     };
     const btn = document.querySelector('#start');
     btn.addEventListener('click', function () {
@@ -751,6 +759,8 @@
   });
 
   let delayErrorEnable = false
+
+
 setInterval(() => {
   delayErrorEnable = true
   console.log("error enabled");

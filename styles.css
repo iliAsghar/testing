@@ -59,7 +59,8 @@ body {
     position: absolute;
   }
   
-  #start{
+  #start ,
+  #end {
     animation: blink .7s steps(2, start) infinite;
     background: #E1FF5F;
     border-radius: 2px;
@@ -67,6 +68,10 @@ body {
     
     cursor: pointer;
     font-size: 28px;
+  }
+  #end {
+    font-family: "Vazir";
+    font-size: 20px;
   }
   
   @keyframes blink {
