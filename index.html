@@ -1,28 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-
-    <title>Tetris</title>
+    <!--<link rel="stylesheet" href="{{url_for('static', filename='/user/game/menja/style.css')}}">-->
+    <link rel="stylesheet" href="style.css">
+    <!--<script src="{{url_for('static', filename='/user/game/menja/app.js')}}" defer></script>-->
+    <script src="app.js" defer></script>
+    <script>
+        window.disruption = "{{ disruption }}"; // متغیر disruption از سرور
+    </script>
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault(), false);
+        document.addEventListener("keydown", e => {
+            if (e.ctrlKey || e.keyCode == 123) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+        })
+    </script>
+    <title>Menja Game</title>
 </head>
+
 <body>
-    <div id="tetris">
-        <div id="info">
-            <div id="next_shape"></div>
-            <p id="level">Level: <span></span></p>
-            <p id="highscore">High: <span id="highscore-value"></span></p>
-            <p id="lines">Lines: <span></span></p>
-            <p id="score">Score: <span></span></p>
-            <p id="time">Time: <span></span></p>
-            <button id="start">Start</button>
-            <button id="end">نظرسنجی</button>
-            <p class="red">Press the Esc button to pause<span></span></p>
+
+    <!--<audio id="backgroundMusic" src="{{url_for('static', filename='/user/game/menja/assets/tracks/night-in-kyoto-avbe-main-version-21302-01-57.mp3')}}" loop></audio>-->
+    <audio id="backgroundMusic" src="/assets/tracks/night-in-kyoto-avbe-main-version-21302-01-57.mp3" loop></audio>
+    <!--<audio id="cutEffect" src="{{url_for('static', filename='/user/game/menja/assets/tracks/pop-39222.mp3')}}"></audio>-->
+    <audio id="cutEffect" src="/assets/tracks/pop-39222.mp3"></audio>
+    <!-- Game canvas -->
+    <canvas id="c"></canvas>
+
+    <!-- Gameplay HUD -->
+    <div class="hud">
+        <div class="hud__score">
+            <div class="score-lbl"></div>
+            <div class="cube-count-lbl"></div>
         </div>
-        <div id="canvas"></div>
+        
+        <div class="slowmo">
+            <div class="slowmo__bar"></div>
+        </div>
     </div>
-    <script type="text/javascript" src="script.js"></script>
+
+    <!-- Menu System -->
+    <div class="menus">
+        <div class="menu menu--main">
+            <h1>BLOCK MENJA</h1>
+            <button type="button" class="play-normal-btn">PLAY GAME</button>
+            <button type="button" class="play-casual-btn">NORMAL MODE</button>
+            <!-- <div class="credits">A game by Zayan Mohammed</div> -->
+        </div>
+        <div class="menu menu--pause">
+            <h1>Paused</h1>
+            <button type="button" class="resume-btn">RESUME GAME</button>
+            <button type="button" class="menu-btn--pause">MAIN MENU</button>
+        </div>
+        <div class="menu menu--score">
+            <h1>Game Over</h1>
+            <h2>Your Score:</h2>
+            <div class="final-score-lbl"></div>
+            <div class="high-score-lbl"></div>
+            <button type="button" class="play-again-btn">PLAY AGAIN</button>
+            <button type="button" class="menu-btn--score">MAIN MENU</button>
+        </div>`
+    </div>
+
 </body>
+
 </html>
