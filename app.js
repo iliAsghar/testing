@@ -1191,8 +1191,11 @@ function renderMenus() {
             showMenu(menuScoreNode);
             break;
     }
+    
 
-    setHudVisibility(!isMenuVisible());
+    if(state.menus.active == null){
+        setHudVisibility(true);
+    }
     menuContainerNode.classList.toggle("has-active", isMenuVisible());
     menuContainerNode.classList.toggle(
         "interactive-mode",
@@ -1305,9 +1308,9 @@ function resetGame() {
     spawnTime = getSpawnDelay();
 }
 
-function pauseGame() {
-    isInGame() && setActiveMenu(MENU_PAUSE);
-}
+// function pauseGame() {
+//     isInGame() && setActiveMenu(MENU_PAUSE);
+// }
 
 function resumeGame() {
     isPaused() && setActiveMenu(null);
@@ -1396,6 +1399,7 @@ function endGame() {
     }
     setDisruption(); // فرراخوانی setDisruption
     handleGameOver(); // اضافه کردن این خط برای فراخوانی handleGameOver
+    setHudVisibility(false)
     setActiveMenu(MENU_SCORE);
 }
 
@@ -1406,14 +1410,6 @@ const gameOver = () => {
 };
 
 
-// KEYBOARD SHORTCUTS
-
-// window.addEventListener("keydown", (event) => {
-//     if (event.key === "p") {
-//         isPaused() ? resumeGame() : pauseGame();
-//     }
-
-// });
 
 let spawnTime = 0;
 const maxSpawnX = 450;
@@ -2134,6 +2130,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
             disableInput();
         }
     }, 10000); // اینو اگه میخوای رو بک اند هم میشه تنظیم کرد صدا زدنشو
+
+    const freeze = () => {
+        // if(disruptionType == 'freezeNoise') {
+            let chance = Math.random() * 100
+            if(chance > 30){
+                state.menus.active = MENU_PAUSE
+                let freezeDur = ((Math.random() * 100) % 2) * 1000
+                setTimeout(() => {
+                    state.menus.active = null
+                }, freezeDur);
+                setHudVisibility(true)
+                renderMenus() 
+            }
+        // }
+    };
+
+    setInterval(() => {
+        if (!state.menus.active) {
+           freeze()
+        }
+    }, 10000);
 });
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -2141,5 +2158,7 @@ document.addEventListener("DOMContentLoaded", function() {
     audio.play();
     audio.volume = 0.04;
 });
+setHudVisibility(false)
+
 
 setupCanvases();
